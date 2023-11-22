@@ -31,13 +31,13 @@ export const TeamMember: FC<TeamMember> = ({
       @{username}
     </a>
   ) : (
-    <p className="font-semibold text-2xl">{username}</p>
+    <p className="font-semibold text-xl">{username}</p>
   )
   return (
     <div className="flex items-center gap-3">
       <Avatar>
         <AvatarImage src={src} />
-        <AvatarFallback>{username[0]}</AvatarFallback>
+        <AvatarFallback>{username[0]}{username[1]}</AvatarFallback>
       </Avatar>
       {caption ? (
         <HoverCard>
