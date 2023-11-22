@@ -46,6 +46,7 @@ export default function IndexPage() {
           src="https://pbs.twimg.com/profile_images/1571118779073024001/7tRKlkOU_400x400.jpg"
           username="Moudinho3"
           caption="Considers himself RunnerXBT's biggest fan."
+          role="Trader"
         />
         <TeamMember
           src="https://pbs.twimg.com/profile_images/1511809533093498888/I2Q1U22u_400x400.jpg"
