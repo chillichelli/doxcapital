@@ -35,7 +35,7 @@ export default function IndexPage() {
         <TeamMember
           src="https://pbs.twimg.com/profile_images/1633105915644727296/OzZnbV0V_400x400.jpg"
           username="artikokus"
-          caption="Our beloved father."
+          caption="Our beloved father. Hummus enthusiast."
           role="Founder"
         />
         <TeamMember
