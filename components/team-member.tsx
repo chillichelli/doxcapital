@@ -23,6 +23,7 @@ export const TeamMember: FC<TeamMember> = ({
 }) => {
   const content = hasTwitter ? (
     <a
+      rel="noopener noreferrer"
       target="_blank"
       href={`https://twitter.com/${username.toLowerCase()}`}
       className="font-semibold text-xl text-blue cursor-pointer hover:underline underline-offset-4"

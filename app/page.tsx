@@ -7,7 +7,11 @@ export default function IndexPage() {
     <Main>
       <h1 className="flex gap-6 items-baseline text-[72px] tracking-tighter font-bold">
         kennel capital{' '}
-        <a target="_blank" href="https://twitter.com/kennelcapital">
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://twitter.com/kennelcapital"
+        >
           <Twitter
             size={32}
             color="#1DA1F2"
@@ -17,7 +21,7 @@ export default function IndexPage() {
         </a>
       </h1>
       <p className="text-[24px] text-muted-foreground">
-        We're just a bunch of traders, developers <br /> spending time in the
+        We{"'"}re just a bunch of traders, developers <br /> spending time in the
         kennel.
       </p>
       <h1 className="mt-14 text-[40px] tracking-tighter font-bold">team</h1>
@@ -87,15 +91,20 @@ export default function IndexPage() {
         <TeamMember username="Tbe" hasTwitter={false} />
         <TeamMember username="Kadak" hasTwitter={false} />
       </div>
-      <h1 className="mt-14 mb-4 text-[40px] tracking-tighter font-bold">projects</h1>
+      <h1 className="mt-14 mb-4 text-[40px] tracking-tighter font-bold">
+        projects
+      </h1>
       <a
+        rel="noopener noreferrer"
         className="text-xl font-medium text-blue cursor-pointer hover:underline"
         target="_blank"
         href="https://twitter.com/kennelcapital"
       >
         /NONE
-      </a><br/>
+      </a>
+      <br />
       <a
+        rel="noopener noreferrer"
         className="text-xl font-medium text-blue cursor-pointer hover:underline"
         target="_blank"
         href="https://twitter.com/kennelcapital"
