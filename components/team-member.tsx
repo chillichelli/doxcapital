@@ -26,7 +26,7 @@ export const TeamMember: FC<TeamMember> = ({
       rel="noopener noreferrer"
       target="_blank"
       href={`https://twitter.com/${username.toLowerCase()}`}
-      className="font-semibold text-xl text-blue cursor-pointer hover:underline underline-offset-4"
+      className="font-semibold text-lg md:text-xl text-blue cursor-pointer hover:underline underline-offset-4"
     >
       @{username}
     </a>
@@ -35,7 +35,7 @@ export const TeamMember: FC<TeamMember> = ({
   )
   return (
     <div className="flex items-center gap-3">
-      <Avatar>
+      <Avatar className="w-8 h-8 md:w-9 md:h-9">
         <AvatarImage src={src} />
         <AvatarFallback>{username[0]}{username[1]}</AvatarFallback>
       </Avatar>

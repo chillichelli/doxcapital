@@ -25,7 +25,7 @@ export default function IndexPage() {
         the kennel.
       </p>
       <h1 className="mt-14 text-[40px] tracking-tighter font-bold">team</h1>
-      <div className="mt-4 flex gap-x-12 gap-y-8 flex-wrap">
+      <div className="mt-4 flex gap-x-12 gap-y-5 md:gap-y-8 flex-wrap">
         <TeamMember
           src="https://pbs.twimg.com/profile_images/3197981582/ec9712dbbcdc775db064abcf3808eef0_400x400.jpeg"
           username="PuggyTrades"
@@ -91,7 +91,10 @@ export default function IndexPage() {
           username="FilthyBulla"
           src="https://pbs.twimg.com/profile_images/1456896771481739265/dBUxn8H1_400x400.jpg"
         />
-        <TeamMember username="AL4N" hasTwitter={false} />
+        <TeamMember
+          username="0xMesmerizing"
+          src="https://pbs.twimg.com/profile_images/1694087396713811968/fnLZpXaj_400x400.jpg"
+        />
         <TeamMember username="Tbe" hasTwitter={false} />
         <TeamMember username="Kadak" hasTwitter={false} />
       </div>
