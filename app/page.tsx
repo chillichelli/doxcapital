@@ -45,7 +45,7 @@ export default function IndexPage() {
         <TeamMember
           src="https://pbs.twimg.com/profile_images/1571118779073024001/7tRKlkOU_400x400.jpg"
           username="Moudinho3"
-          caption="Considers himself RunnerXBT's biggest fan."
+          caption="Considers himself RunnerXBT's biggest fan. Founder of the Adani candle"
           role="Trader"
         />
         <TeamMember
