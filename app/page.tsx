@@ -92,7 +92,7 @@ export default function IndexPage() {
         <TeamMember username="Kadak" hasTwitter={false} />
       </div>
       <h1 className="mt-14 mb-4 text-[40px] tracking-tighter font-bold">
-        projects
+        portfolio
       </h1>
       <a
         rel="noopener noreferrer"
@@ -100,7 +100,7 @@ export default function IndexPage() {
         target="_blank"
         href="https://twitter.com/kennelcapital"
       >
-        /NONE
+        /EMPTY
       </a>
       <br />
       <a
