@@ -21,8 +21,8 @@ export default function IndexPage() {
         </a>
       </h1>
       <p className="text-[20px] lg:text-[24px] text-muted-foreground">
-        We{"'"}re just a bunch of traders, developers <br /> spending time in the
-        kennel.
+        We{"'"}re just a bunch of traders, developers <br /> spending time in
+        the kennel.
       </p>
       <h1 className="mt-14 text-[40px] tracking-tighter font-bold">team</h1>
       <div className="mt-4 flex gap-x-12 gap-y-8 flex-wrap">
@@ -87,7 +87,10 @@ export default function IndexPage() {
           src="https://pbs.twimg.com/profile_images/1596937469525565440/14QzvEsy_400x400.jpg"
           username="art_xbt"
         />
-        <TeamMember username="FilthyBulla" hasTwitter={false} />
+        <TeamMember
+          username="cryptoenthu55"
+          src="https://pbs.twimg.com/profile_images/1456896771481739265/dBUxn8H1_400x400.jpg"
+        />
         <TeamMember username="AL4N" hasTwitter={false} />
         <TeamMember username="Tbe" hasTwitter={false} />
         <TeamMember username="Kadak" hasTwitter={false} />
