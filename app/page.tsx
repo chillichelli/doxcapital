@@ -5,7 +5,7 @@ import { Main } from '@/components/ui/main'
 export default function IndexPage() {
   return (
     <Main>
-      <h1 className="flex gap-6 items-baseline text-[72px] tracking-tighter font-bold">
+      <h1 className="flex gap-6 items-baseline text-[40px] sm:text-[56px] lg:text-[72px] tracking-tighter font-bold">
         kennel capital{' '}
         <a
           rel="noopener noreferrer"
@@ -20,7 +20,7 @@ export default function IndexPage() {
           />
         </a>
       </h1>
-      <p className="text-[24px] text-muted-foreground">
+      <p className="text-[20px] lg:text-[24px] text-muted-foreground">
         We{"'"}re just a bunch of traders, developers <br /> spending time in the
         kennel.
       </p>
