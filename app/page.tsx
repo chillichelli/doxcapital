@@ -63,7 +63,7 @@ export default function IndexPage() {
 
         <TeamMember
           src="https://pbs.twimg.com/profile_images/1702881138099023872/euO4Tk6m_400x400.jpg"
-          username="PC_Larp"
+          username="PC_PR1NCIPAL"
         />
 
         <TeamMember
@@ -88,7 +88,7 @@ export default function IndexPage() {
           username="art_xbt"
         />
         <TeamMember
-          username="cryptoenthu55"
+          username="FilthyBulla"
           src="https://pbs.twimg.com/profile_images/1456896771481739265/dBUxn8H1_400x400.jpg"
         />
         <TeamMember username="AL4N" hasTwitter={false} />
