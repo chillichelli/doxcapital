@@ -1,30 +1,38 @@
 import { Twitter } from '@/components/icons'
 import { TeamMember } from '@/components/team-member'
 import { Main } from '@/components/ui/main'
+import { fontSans } from '@/lib/fonts'
+import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 export default function IndexPage() {
   return (
     <Main>
-      <h1 className="flex gap-6 items-baseline text-[40px] sm:text-[56px] lg:text-[72px] tracking-tighter font-bold">
-        kennel capital{' '}
-        <a
-          rel="noopener noreferrer"
-          target="_blank"
-          href="https://twitter.com/kennelcapital"
+      <div className="flex gap-6 items-baseline">
+        <h1
+          className={cn(
+            fontSans.className,
+            'flex gap-6 items-center text-[40px] sm:text-[56px] lg:text-[72px] tracking-tighter font-bold',
+          )}
         >
-          <Twitter
-            size={32}
-            color="#1DA1F2"
-            fill="currentColor"
-            className="text-[#1DA1F2]"
+          <Image
+            alt="logo"
+            width={60}
+            height={60}
+            src="/logo.jpg"
+            className="w-10 sm:w-12 lg:w-16 -mr-3 -mt-1 sm:-mt-0 sm:-mr-3 lg:-mt-1 lg:-mr-1"
           />
-        </a>
-      </h1>
+          kennel capital{' '}
+        </h1>
+      </div>
+
       <p className="text-[20px] lg:text-[24px] text-muted-foreground">
         We{"'"}re just a bunch of traders, developers <br /> spending time in
         the kennel.
       </p>
-      <h1 className="mt-14 text-[40px] tracking-tighter font-bold">team</h1>
+      <h1 className={cn('mt-14 text-[40px] tracking-tighter font-bold')}>
+        team
+      </h1>
       <div className="mt-4 flex gap-x-12 gap-y-5 md:gap-y-8 flex-wrap">
         <TeamMember
           src="https://pbs.twimg.com/profile_images/3197981582/ec9712dbbcdc775db064abcf3808eef0_400x400.jpeg"
@@ -98,7 +106,7 @@ export default function IndexPage() {
         <TeamMember username="Tbe" hasTwitter={false} />
         <TeamMember username="Kadak" hasTwitter={false} />
       </div>
-      <h1 className="mt-14 mb-4 text-[40px] tracking-tighter font-bold">
+      <h1 className={cn('mt-14 mb-4 text-[40px] tracking-tighter font-bold')}>
         portfolio
       </h1>
       <a
@@ -117,6 +125,21 @@ export default function IndexPage() {
         href="https://twitter.com/kennelcapital"
       >
         /FOR_NOW
+      </a>
+      <h1 className={cn('mt-14 mb-4 text-[40px] tracking-tighter font-bold')}>
+        contact
+      </h1>
+      <a
+        rel="noopener noreferrer"
+        target="_blank"
+        href="https://twitter.com/kennelcapital"
+      >
+        <Twitter
+          size={32}
+          color="#1DA1F2"
+          fill="currentColor"
+          className="text-[#1DA1F2]"
+        />
       </a>
     </Main>
   )
