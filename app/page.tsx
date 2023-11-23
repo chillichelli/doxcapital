@@ -111,7 +111,7 @@ export default function IndexPage() {
       </h1>
       <a
         rel="noopener noreferrer"
-        className="text-xl font-medium text-blue cursor-pointer hover:underline"
+        className="text-xl text-blue cursor-pointer hover:underline font-bold"
         target="_blank"
         href="https://twitter.com/kennelcapital"
       >
@@ -120,7 +120,7 @@ export default function IndexPage() {
       <br />
       <a
         rel="noopener noreferrer"
-        className="text-xl font-medium text-blue cursor-pointer hover:underline"
+        className="text-xl text-blue cursor-pointer hover:underline font-bold"
         target="_blank"
         href="https://twitter.com/kennelcapital"
       >

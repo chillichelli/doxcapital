@@ -26,7 +26,7 @@ export const TeamMember: FC<TeamMember> = ({
       rel="noopener noreferrer"
       target="_blank"
       href={`https://twitter.com/${username.toLowerCase()}`}
-      className="font-semibold text-lg md:text-xl text-blue cursor-pointer hover:underline underline-offset-4"
+      className="font-bold tracking-tight text-lg md:text-xl text-blue cursor-pointer hover:underline underline-offset-4"
     >
       @{username}
     </a>
