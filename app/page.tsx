@@ -103,7 +103,10 @@ export default function IndexPage() {
           username="0xMesmerizing"
           src="https://pbs.twimg.com/profile_images/1694087396713811968/fnLZpXaj_400x400.jpg"
         />
-        <TeamMember username="Tbe" hasTwitter={false} />
+        <TeamMember
+          username="appuleius104"
+          src="https://pbs.twimg.com/profile_images/1711727033623953408/gZ66M-ek_400x400.jpg"
+        />
         <TeamMember username="Kadak" hasTwitter={false} />
       </div>
       <h1 className={cn('mt-14 mb-4 text-[40px] tracking-tighter font-bold')}>
