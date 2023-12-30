@@ -19,16 +19,8 @@ interface Dashboard {
 
 export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
   return (
-    <ResizablePanelGroup
-      direction="horizontal"
-      onLayout={(sizes: number[]) => {
-        document.cookie = `react-resizable-panels:layout=${JSON.stringify(
-          sizes,
-        )}`;
-      }}
-      className="border rounded-lg h-full items-stretch w-full"
-    >
-      <ResizablePanel defaultSize={defaultLayout[0]} minSize={15} maxSize={40}>
+    <>
+      <div className="flex lg:hidden flex-col border rounded-lg h-full items-stretch w-full">
         <div className="flex flex-col gap-3 px-3 py-5">
           <CardTitle>Upload CSV</CardTitle>
         </div>
@@ -44,13 +36,50 @@ export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
         </div>
         <Separator />
         <UploadedFiles />
-      </ResizablePanel>
-      <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
+        <Separator />
         <WalletsList />
         <Separator />
         <CompareWallets />
-      </ResizablePanel>
-    </ResizablePanelGroup>
+      </div>
+      <div className="hidden lg:block">
+        <ResizablePanelGroup
+          direction="horizontal"
+          onLayout={(sizes: number[]) => {
+            document.cookie = `react-resizable-panels:layout=${JSON.stringify(
+              sizes,
+            )}`;
+          }}
+          className="border rounded-lg h-full items-stretch w-full"
+        >
+          <ResizablePanel
+            defaultSize={defaultLayout[0]}
+            minSize={15}
+            maxSize={40}
+          >
+            <div className="flex flex-col gap-3 px-3 py-5">
+              <CardTitle>Upload CSV</CardTitle>
+            </div>
+            <Separator />
+            <div className="flex flex-col gap-3 px-3 py-5">
+              <CardDescription>
+                Download multiple CSV files containing holder data from the
+                Etherscan token page and upload them here.
+              </CardDescription>
+            </div>
+            <div className="flex flex-col gap-3 px-3 pb-4">
+              <DropZone />
+            </div>
+            <Separator />
+            <UploadedFiles />
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
+            <WalletsList />
+            <Separator />
+            <CompareWallets />
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      </div>
+    </>
   );
 };
