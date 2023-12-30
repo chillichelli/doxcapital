@@ -44,13 +44,15 @@ const TokenCell: FC<{ row: Row<Record>; id: string }> = ({ row, id }) => {
   });
 
   return (
-    <div className="text-right">
+    <div className="text-right font-medium">
       {row.getValue(id)
         ? parseFloat(
             (row.getValue(id) as string).replace(",", ""),
           ).toLocaleString("en-US")
         : ""}{" "}
-      {tokenData ? tokenData.symbol : store[id] ? store[id] : ""}
+      <span className="font-normal text-muted-foreground">
+        {tokenData ? tokenData.symbol : store[id] ? store[id] : ""}
+      </span>
     </div>
   );
 };
