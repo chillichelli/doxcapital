@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { WalletsListProvider } from "@/components/wallets-list-provider";
 import { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 import { siteConfig } from "@/config/site";
 import { fontMono, fontSans } from "@/lib/fonts";
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             </TooltipProvider>
           </ThemeProvider>
           <SpeedInsights />
+          <Analytics />
         </body>
       </html>
     </>

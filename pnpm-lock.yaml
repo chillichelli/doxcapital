@@ -25,6 +25,7 @@ specifiers:
   '@types/react': ^18.2.7
   '@types/react-dom': ^18.2.4
   '@typescript-eslint/parser': ^5.59.7
+  '@vercel/analytics': ^1.1.1
   '@vercel/speed-insights': ^1.0.2
   autoprefixer: ^10.4.14
   class-variance-authority: ^0.4.0
@@ -76,6 +77,7 @@ dependencies:
   '@radix-ui/react-tabs': 1.0.4_y3k2tdq7wbuzvkkbg2xqtd2ahu
   '@radix-ui/react-tooltip': 1.0.7_y3k2tdq7wbuzvkkbg2xqtd2ahu
   '@tanstack/react-table': 8.11.2_biqbaboplfbrettd7655fr4n2y
+  '@vercel/analytics': 1.1.1
   '@vercel/speed-insights': 1.0.2
   class-variance-authority: 0.4.0_typescript@4.9.5
   clsx: 1.2.1
@@ -1659,6 +1661,12 @@ packages:
       '@typescript-eslint/types': 5.59.11
       eslint-visitor-keys: 3.4.1
     dev: true
+
+  /@vercel/analytics/1.1.1:
+    resolution: {integrity: sha512-+NqgNmSabg3IFfxYhrWCfB/H+RCUOCR5ExRudNG2+pcRehq628DJB5e1u1xqwpLtn4pAYii4D98w7kofORAGQA==}
+    dependencies:
+      server-only: 0.0.1
+    dev: false
 
   /@vercel/speed-insights/1.0.2:
     resolution: {integrity: sha512-y5HWeB6RmlyVYxJAMrjiDEz8qAIy2cit0fhBq+MD78WaUwQvuBnQlX4+5MuwVTWi46bV3klaRMq83u9zUy1KOg==}
@@ -3713,6 +3721,10 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+
+  /server-only/0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
+    dev: false
 
   /sharp/0.31.3:
     resolution: {integrity: sha512-XcR4+FCLBFKw1bdB+GEhnUNXNXvnt0tDo4WsBsraKymuo/IAuPuCBVAL2wIkUw2r/dwFW5Q5+g66Kwl2dgDFVg==}
