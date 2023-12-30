@@ -35,6 +35,7 @@ export const columns: ColumnDef<WalletsListStateRecord>[] = [
     enableHiding: false,
   },
   {
+    id: "count",
     accessorKey: "count",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Has token(s)" />
@@ -65,6 +66,7 @@ export const columns: ColumnDef<WalletsListStateRecord>[] = [
 
 export const WalletsList = () => {
   const data = useWalletsState();
+  console.log(data);
   return (
     <DataTable
       data={data}
