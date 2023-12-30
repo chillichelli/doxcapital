@@ -1,10 +1,12 @@
-import "@/styles/globals.css"
-import { Metadata } from "next"
+import "./globals.css";
+import { CsvProvider } from "@/components/csv-data-provider";
+import { WalletsListProvider } from "@/components/wallets-list-provider";
+import { Metadata } from "next";
 
-import { siteConfig } from "@/config/site"
-import { fontMono, fontSans } from "@/lib/fonts"
-import { cn } from "@/lib/utils"
-import { ThemeProvider } from "@/components/theme-provider"
+import { siteConfig } from "@/config/site";
+import { fontMono, fontSans } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -21,10 +23,10 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-}
+};
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -36,16 +38,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
             fontSans.variable,
-            fontMono.variable
+            fontMono.variable,
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="light">
-            <div className="relative flex min-h-screen flex-col">
-              <div className="flex-1">{children}</div>
-            </div>
+            <CsvProvider>
+              <WalletsListProvider>
+                <div className="relative flex min-h-screen flex-col">
+                  <div className="flex-1">{children}</div>
+                </div>
+              </WalletsListProvider>
+            </CsvProvider>
           </ThemeProvider>
         </body>
       </html>
     </>
-  )
+  );
 }

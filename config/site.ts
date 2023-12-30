@@ -1,9 +1,8 @@
-export type SiteConfig = typeof siteConfig
+export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Kennel Capital",
-  description:
-    "Your average venture capital.",
+  name: "Wallet Finder",
+  description: "Your average venture capital.",
   mainNav: [
     {
       title: "Property",
@@ -23,4 +22,4 @@ export const siteConfig = {
     github: "https://github.com/shadcn/ui",
     docs: "https://ui.shadcn.com",
   },
-}
+};
