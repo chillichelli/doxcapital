@@ -11,6 +11,7 @@ export default function IndexPage() {
       <div className="flex flex-col gap-6 items-baseline">
         <div className="flex flex-col mb-4">
           <a
+            target="_blank"
             href="https://twitter.com/chillichelli"
             className="text-blue-500 font-bold text-lg"
           >
