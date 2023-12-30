@@ -29,9 +29,11 @@ const TokenCell: FC<{ row: Row<Record>; id: string }> = ({ row, id }) => {
   const { store } = useLabelStore();
   return (
     <div className="text-right">
-      {parseFloat((row.getValue(id) as string).replace(",", "")).toLocaleString(
-        "en-US",
-      )}{" "}
+      {row.getValue(id)
+        ? parseFloat(
+            (row.getValue(id) as string).replace(",", ""),
+          ).toLocaleString("en-US")
+        : ""}{" "}
       {store[id] ? store[id] : ""}
     </div>
   );
