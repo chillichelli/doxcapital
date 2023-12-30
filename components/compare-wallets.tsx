@@ -8,6 +8,8 @@ import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-col
 import { shortenAddress } from "@/lib/utils";
 import { Column, ColumnDef, Row } from "@tanstack/react-table";
 import { FC, useMemo } from "react";
+import { getAddress } from "viem";
+import { useEnsName, useToken } from "wagmi";
 
 type Record = { address: string; [key: string]: string };
 
@@ -16,10 +18,20 @@ const TokenHeader: FC<{ column: Column<Record, unknown>; id: string }> = ({
   id,
 }) => {
   const { store } = useLabelStore();
+  const { data: tokenData } = useToken({
+    address: getAddress(id as `0x${string}`),
+  });
+
   return (
     <DataTableColumnHeader
       column={column}
-      title={`${store[id] ? store[id] : shortenAddress(id)}`}
+      title={`${
+        tokenData
+          ? tokenData.symbol
+          : store[id]
+            ? store[id]
+            : shortenAddress(id)
+      }`}
       className="justify-end"
     />
   );
@@ -27,6 +39,10 @@ const TokenHeader: FC<{ column: Column<Record, unknown>; id: string }> = ({
 
 const TokenCell: FC<{ row: Row<Record>; id: string }> = ({ row, id }) => {
   const { store } = useLabelStore();
+  const { data: tokenData } = useToken({
+    address: getAddress(id as `0x${string}`),
+  });
+
   return (
     <div className="text-right">
       {row.getValue(id)
@@ -34,8 +50,23 @@ const TokenCell: FC<{ row: Row<Record>; id: string }> = ({ row, id }) => {
             (row.getValue(id) as string).replace(",", ""),
           ).toLocaleString("en-US")
         : ""}{" "}
-      {store[id] ? store[id] : ""}
+      {tokenData ? tokenData.symbol : store[id] ? store[id] : ""}
     </div>
+  );
+};
+
+const AddressCell: FC<{ row: Row<Record> }> = ({ row }) => {
+  const { data } = useEnsName({ chainId: 1, address: row.getValue("address") });
+
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-blue-500"
+      href={`https://debank.com/profile/${row.getValue("address")}`}
+    >
+      {data ? data : shortenAddress(row.getValue("address"))}
+    </a>
   );
 };
 
@@ -50,18 +81,7 @@ export const CompareWallets = () => {
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Address" />
         ),
-        cell: ({ row }) => {
-          return (
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-500"
-              href={`https://debank.com/profile/${row.getValue("address")}`}
-            >
-              {shortenAddress(row.getValue("address"))}
-            </a>
-          );
-        },
+        cell: ({ row }) => <AddressCell row={row} />,
         enableSorting: false,
         enableHiding: false,
       },

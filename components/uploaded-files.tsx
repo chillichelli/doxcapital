@@ -12,10 +12,12 @@ import { CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { getAddress } from "viem";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Pencil, X, XIcon } from "lucide-react";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
+import { useToken } from "wagmi";
 
 export const UploadedFiles = () => {
   const { data } = useCsvState();
@@ -64,8 +66,13 @@ interface Item {
 }
 
 export const Item: FC<Item> = ({ data, item, remove }) => {
+  const { data: tokenData } = useToken({
+    address: getAddress(item as `0x${string}`),
+  });
+
   const { store } = useLabelStore();
   const { label } = useLabelStoreActions();
+
   const [value, setValue] = useState<string>(store[item] ? store[item] : item);
   const [editMode, setEditMode] = useState<boolean>(false);
 
@@ -110,13 +117,17 @@ export const Item: FC<Item> = ({ data, item, remove }) => {
           </div>
         ) : (
           <>
-            <div className="w-3 h-3">
-              <Pencil
-                className="min-w-3 min-h-3 w-3 h-3 cursor-pointer"
-                onClick={() => setEditMode((prev) => !prev)}
-              />
+            {!tokenData ? (
+              <div className="w-3 h-3">
+                <Pencil
+                  className="min-w-3 min-h-3 w-3 h-3 cursor-pointer"
+                  onClick={() => setEditMode((prev) => !prev)}
+                />
+              </div>
+            ) : null}
+            <div className="truncate">
+              {tokenData ? tokenData.symbol : store[item] ? store[item] : item}
             </div>
-            <div className="truncate">{store[item] ? store[item] : item}</div>
           </>
         )}
       </div>

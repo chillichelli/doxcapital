@@ -12,6 +12,7 @@ import { siteConfig } from "@/config/site";
 import { fontMono, fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { WagmiProvider } from "@/components/wagmi-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -46,21 +47,23 @@ export default function RootLayout({ children }: RootLayoutProps) {
             fontMono.variable,
           )}
         >
-          <ThemeProvider attribute="class" defaultTheme="light">
-            <TooltipProvider>
-              <SelectedWalletsProvider>
-                <CsvProvider>
-                  <WalletsListProvider>
-                    <LabelStoreProvider>
-                      <div className="relative flex min-h-screen flex-col">
-                        <div className="flex-1">{children}</div>
-                      </div>
-                    </LabelStoreProvider>
-                  </WalletsListProvider>
-                </CsvProvider>
-              </SelectedWalletsProvider>
-            </TooltipProvider>
-          </ThemeProvider>
+          <WagmiProvider>
+            <ThemeProvider attribute="class" defaultTheme="light">
+              <TooltipProvider>
+                <SelectedWalletsProvider>
+                  <CsvProvider>
+                    <WalletsListProvider>
+                      <LabelStoreProvider>
+                        <div className="relative flex min-h-screen flex-col">
+                          <div className="flex-1">{children}</div>
+                        </div>
+                      </LabelStoreProvider>
+                    </WalletsListProvider>
+                  </CsvProvider>
+                </SelectedWalletsProvider>
+              </TooltipProvider>
+            </ThemeProvider>
+          </WagmiProvider>
           <SpeedInsights />
           <Analytics />
         </body>

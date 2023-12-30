@@ -11,6 +11,7 @@ import {
 import { CheckedState } from "@radix-ui/react-checkbox";
 import { ColumnDef, Row } from "@tanstack/react-table";
 import { FC, useCallback } from "react";
+import { useEnsName } from "wagmi";
 
 const TokenCell: FC<{ row: Row<WalletsListStateRecord> }> = ({ row }) => {
   const { toggle } = useSelectedWalletsActions();
@@ -30,6 +31,21 @@ const TokenCell: FC<{ row: Row<WalletsListStateRecord> }> = ({ row }) => {
       aria-label="Select row"
       className="translate-y-[2px]"
     />
+  );
+};
+
+const AddressCell: FC<{ row: Row<WalletsListStateRecord> }> = ({ row }) => {
+  const { data } = useEnsName({ chainId: 1, address: row.getValue("address") });
+
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-blue-500"
+      href={`https://debank.com/profile/${row.getValue("address")}`}
+    >
+      {data ? data : row.getValue("address")}
+    </a>
   );
 };
 
@@ -58,18 +74,7 @@ export const columns: ColumnDef<WalletsListStateRecord>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Address" />
     ),
-    cell: ({ row }) => {
-      return (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-blue-500"
-          href={`https://debank.com/profile/${row.getValue("address")}`}
-        >
-          {row.getValue("address")}
-        </a>
-      );
-    },
+    cell: ({ row }) => <AddressCell row={row} />,
     enableSorting: false,
     enableHiding: false,
   },
