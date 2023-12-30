@@ -44,7 +44,7 @@ export const DropZone = () => {
         reader.readAsBinaryString(file);
       });
     },
-    [],
+    [setData],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -73,7 +73,7 @@ export const DropZone = () => {
             <p>Drop the files here ...</p>
           ) : (
             <p>
-              Drag 'n' drop some files here <br /> or click to select files
+              Drag & drop some files here <br /> or click to select files
             </p>
           )}
         </div>
