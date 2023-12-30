@@ -16,7 +16,7 @@ import { getAddress } from "viem";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Pencil, X, XIcon } from "lucide-react";
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import { useToken } from "wagmi";
 
 export const UploadedFiles = () => {
@@ -134,6 +134,7 @@ export const Item: FC<Item> = ({ data, item, remove }) => {
       <div className={cn("flex gap-2 text-xs text-muted-foreground")}>
         {tokenData?.symbol ? (
           <a
+            rel="noopener noreferrer"
             className="text-blue-500"
             target="_blank"
             href={`https://etherscan.io/address/${item}`}
@@ -143,6 +144,7 @@ export const Item: FC<Item> = ({ data, item, remove }) => {
         ) : null}
         {tokenData?.symbol ? (
           <a
+            rel="noopener noreferrer"
             className="text-blue-500"
             target="_blank"
             href={`https://dexscreener.com/ethereum/${item}`}

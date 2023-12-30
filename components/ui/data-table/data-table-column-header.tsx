@@ -2,12 +2,10 @@ import {
   ArrowDownIcon,
   ArrowUpIcon,
   CaretSortIcon,
-  EyeNoneIcon,
 } from "@radix-ui/react-icons";
 import { Column } from "@tanstack/react-table";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { useCallback } from "react";
 
 interface DataTableColumnHeaderProps<TData, TValue>
@@ -23,10 +21,6 @@ export function DataTableColumnHeader<TData, TValue>({
   className,
   align = "left",
 }: DataTableColumnHeaderProps<TData, TValue>) {
-  if (!column.getCanSort()) {
-    return <div className={cn(className, "text-xs")}>{title}</div>;
-  }
-
   const onClick = useCallback(() => {
     if (column.getIsSorted() === "desc") {
       column.toggleSorting(false);
@@ -36,6 +30,10 @@ export function DataTableColumnHeader<TData, TValue>({
       column.toggleSorting(false);
     }
   }, [column]);
+
+  if (!column.getCanSort()) {
+    return <div className={cn(className, "text-xs")}>{title}</div>;
+  }
 
   return (
     <div
