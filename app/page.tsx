@@ -12,6 +12,7 @@ export default function IndexPage() {
         <div className="flex flex-col mb-4">
           <a
             target="_blank"
+            rel="noopener noreferrer"
             href="https://twitter.com/chillichelli"
             className="text-blue-500 font-bold text-lg"
           >

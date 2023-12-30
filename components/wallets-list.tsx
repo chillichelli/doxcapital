@@ -53,6 +53,7 @@ export const columns: ColumnDef<WalletsListStateRecord>[] = [
       return (
         <a
           target="_blank"
+          rel="noopener noreferrer"
           className="hover:text-blue-500"
           href={`https://debank.com/profile/${row.getValue("address")}`}
         >
