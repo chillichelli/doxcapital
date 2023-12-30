@@ -36,16 +36,8 @@ const TokenCell: FC<{ row: Row<WalletsListStateRecord> }> = ({ row }) => {
 export const columns: ColumnDef<WalletsListStateRecord>[] = [
   {
     id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-        className="translate-y-[2px]"
-      />
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Compare" />
     ),
     cell: ({ row }) => <TokenCell row={row} />,
     enableSorting: false,
