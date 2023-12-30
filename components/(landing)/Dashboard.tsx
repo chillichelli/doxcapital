@@ -20,7 +20,7 @@ interface Dashboard {
 export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
   return (
     <>
-      <div className="flex lg:hidden flex-col border rounded-lg h-full items-stretch w-full">
+      <div className="flex lg:hidden flex-col border h-full items-stretch w-full shadow bg-card">
         <div className="flex flex-col gap-3 px-3 py-5">
           <CardTitle>Upload CSV</CardTitle>
         </div>

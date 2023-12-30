@@ -131,8 +131,26 @@ export const Item: FC<Item> = ({ data, item, remove }) => {
           </>
         )}
       </div>
-      <div className={cn("text-xs text-muted-foreground")}>
-        {data[item].length} rows
+      <div className={cn("flex gap-2 text-xs text-muted-foreground")}>
+        {tokenData?.symbol ? (
+          <a
+            className="text-blue-500"
+            target="_blank"
+            href={`https://etherscan.io/address/${item}`}
+          >
+            Etherscan
+          </a>
+        ) : null}
+        {tokenData?.symbol ? (
+          <a
+            className="text-blue-500"
+            target="_blank"
+            href={`https://dexscreener.com/ethereum/${item}`}
+          >
+            Dexscreener
+          </a>
+        ) : null}
+        {data[item].length} rows{" "}
       </div>
       <div className="absolute right-2 top-2">
         <Button
