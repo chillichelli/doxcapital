@@ -49,9 +49,7 @@ export const DropZone = () => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: {
-      "text/csv": [".csv"],
-    },
+    accept: [".csv"],
   });
 
   return (

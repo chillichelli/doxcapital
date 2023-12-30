@@ -44,7 +44,7 @@ specifiers:
   prisma: ^4.15.0
   react: ^18.2.0
   react-dom: ^18.2.0
-  react-dropzone: ^14.2.3
+  react-dropzone: ^11.7.1
   react-hook-form: ^7.44.3
   sharp: ^0.31.3
   tailwind-merge: ^1.13.2
@@ -84,7 +84,7 @@ dependencies:
   prettier: 3.1.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-dropzone: 14.2.3_react@18.2.0
+  react-dropzone: 11.7.1_react@18.2.0
   react-hook-form: 7.44.3_react@18.2.0
   sharp: 0.31.3
   tailwind-merge: 1.13.2
@@ -2508,9 +2508,9 @@ packages:
       flat-cache: 3.0.4
     dev: true
 
-  /file-selector/0.6.0:
-    resolution: {integrity: sha512-QlZ5yJC0VxHxQQsQhXvBaC7VRJ2uaxTf+Tfpu4Z/OcVQJVpZO+DGU0rkoVW5ce2SccxugvpBJoMvUs59iILYdw==}
-    engines: {node: '>= 12'}
+  /file-selector/0.4.0:
+    resolution: {integrity: sha512-iACCiXeMYOvZqlF1kTiYINzgepRBymz1wwjiuup9u9nayhb6g4fSwiyJ/6adli+EPwrWtpgQAh2PoS7HukEGEg==}
+    engines: {node: '>= 10'}
     dependencies:
       tslib: 2.5.3
     dev: false
@@ -3462,14 +3462,14 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-dropzone/14.2.3_react@18.2.0:
-    resolution: {integrity: sha512-O3om8I+PkFKbxCukfIR3QAGftYXDZfOE2N1mr/7qebQJHs7U+/RSL/9xomJNpRg9kM5h9soQSdf0Gc7OHF5Fug==}
+  /react-dropzone/11.7.1_react@18.2.0:
+    resolution: {integrity: sha512-zxCMwhfPy1olUEbw3FLNPLhAm/HnaYH5aELIEglRbqabizKAdHs0h+WuyOpmA+v1JXn0++fpQDdNfUagWt5hJQ==}
     engines: {node: '>= 10.13'}
     peerDependencies:
-      react: '>= 16.8 || 18.0.0'
+      react: '>= 16.8'
     dependencies:
       attr-accept: 2.2.2
-      file-selector: 0.6.0
+      file-selector: 0.4.0
       prop-types: 15.8.1
       react: 18.2.0
     dev: false
