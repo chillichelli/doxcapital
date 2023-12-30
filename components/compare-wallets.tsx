@@ -32,7 +32,7 @@ const TokenHeader: FC<{ column: Column<Record, unknown>; id: string }> = ({
             ? store[id]
             : shortenAddress(id)
       }`}
-      className="justify-end"
+      align="right"
     />
   );
 };
