@@ -1,5 +1,6 @@
 "use client";
 
+import { useSelectedWalletsActions } from "@/components/selected-wallets-provider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DataTable } from "@/components/ui/data-table/data-table";
 import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-column-header";
@@ -7,7 +8,30 @@ import {
   useWalletsState,
   WalletsListStateRecord,
 } from "@/components/wallets-list-provider";
-import { ColumnDef } from "@tanstack/react-table";
+import { CheckedState } from "@radix-ui/react-checkbox";
+import { ColumnDef, Row } from "@tanstack/react-table";
+import { FC, useCallback } from "react";
+
+const TokenCell: FC<{ row: Row<WalletsListStateRecord> }> = ({ row }) => {
+  const { toggle } = useSelectedWalletsActions();
+
+  const onCheckedChange = useCallback(
+    (value: CheckedState) => {
+      row.toggleSelected(!!value);
+      toggle([row.getValue("address")]);
+    },
+    [row, toggle],
+  );
+
+  return (
+    <Checkbox
+      checked={row.getIsSelected()}
+      onCheckedChange={onCheckedChange}
+      aria-label="Select row"
+      className="translate-y-[2px]"
+    />
+  );
+};
 
 export const columns: ColumnDef<WalletsListStateRecord>[] = [
   {
@@ -23,14 +47,7 @@ export const columns: ColumnDef<WalletsListStateRecord>[] = [
         className="translate-y-[2px]"
       />
     ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-        className="translate-y-[2px]"
-      />
-    ),
+    cell: ({ row }) => <TokenCell row={row} />,
     enableSorting: false,
     enableHiding: false,
   },
@@ -68,7 +85,7 @@ export const columns: ColumnDef<WalletsListStateRecord>[] = [
 
 export const WalletsList = () => {
   const data = useWalletsState();
-  console.log(data);
+
   return (
     <DataTable
       data={data}

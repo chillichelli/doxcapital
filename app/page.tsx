@@ -1,11 +1,14 @@
-import { DropZone } from "@/components/drop-zone";
+import { Dashboard } from "@/components/(landing)/Dashboard";
+import { cookies } from "next/headers";
 import { Main } from "@/components/ui/main";
-import { WalletsList } from "@/components/wallets-list";
 import { fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import React from "react";
 
 export default function IndexPage() {
+  const layout = cookies().get("react-resizable-panels:layout");
+  const defaultLayout = layout ? JSON.parse(layout.value) : undefined;
+
   return (
     <Main>
       <div className="flex flex-col gap-6 items-baseline">
@@ -30,11 +33,8 @@ export default function IndexPage() {
             for the kennel
           </span>
         </div>
-        <div className="flex lg:flex-row flex-col gap-6 w-full">
-          <div>
-            <DropZone />
-          </div>
-          <WalletsList />
+        <div className="flex flex-col w-full">
+          <Dashboard defaultLayout={defaultLayout} />
         </div>
       </div>
     </Main>

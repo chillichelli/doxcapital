@@ -1,5 +1,8 @@
 import "./globals.css";
 import { CsvProvider } from "@/components/csv-data-provider";
+import { LabelStoreProvider } from "@/components/label-store-provider";
+import { SelectedWalletsProvider } from "@/components/selected-wallets-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { WalletsListProvider } from "@/components/wallets-list-provider";
 import { Metadata } from "next";
 
@@ -42,13 +45,19 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="light">
-            <CsvProvider>
-              <WalletsListProvider>
-                <div className="relative flex min-h-screen flex-col">
-                  <div className="flex-1">{children}</div>
-                </div>
-              </WalletsListProvider>
-            </CsvProvider>
+            <TooltipProvider>
+              <SelectedWalletsProvider>
+                <CsvProvider>
+                  <WalletsListProvider>
+                    <LabelStoreProvider>
+                      <div className="relative flex min-h-screen flex-col">
+                        <div className="flex-1">{children}</div>
+                      </div>
+                    </LabelStoreProvider>
+                  </WalletsListProvider>
+                </CsvProvider>
+              </SelectedWalletsProvider>
+            </TooltipProvider>
           </ThemeProvider>
         </body>
       </html>

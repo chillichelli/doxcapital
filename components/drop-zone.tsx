@@ -5,13 +5,6 @@ import {
   CsvState,
   useCsvStateActions,
 } from "@/components/csv-data-provider";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import React, { useCallback } from "react";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
 import Papa from "papaparse";
@@ -33,7 +26,12 @@ export const DropZone = () => {
             header: true,
           });
 
-          state[file.name] = data.data;
+          if (file.name.replace(/[^-]/g, "").length === 4) {
+            const split = file.name.split("-");
+            state[split[4].replace(".csv", "")] = data.data;
+          } else {
+            state[file.name.replace(".csv", "")] = data.data;
+          }
         };
         reader.onloadend = () => {
           if (i === acceptedFiles.length - 1) {
@@ -53,29 +51,18 @@ export const DropZone = () => {
   });
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Upload CSV</CardTitle>
-        <CardDescription>
-          Download multiple CSV files containing holder data <br />
-          from the Etherscan token page and upload them here.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div
-          {...getRootProps()}
-          className="min-w-[320px] text-sm text-center bg-accent text-muted-foreground hover:bg-accent border-2 border-dotted rounded-lg p-4 h-[200px] flex items-center justify-center cursor-pointer"
-        >
-          <input {...getInputProps()} />
-          {isDragActive ? (
-            <p>Drop the files here ...</p>
-          ) : (
-            <p>
-              Drag & drop some files here <br /> or click to select files
-            </p>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+    <div
+      {...getRootProps()}
+      className="border border-dotted rounded-md text-sm text-center bg-accent hover:bg-secondary transition-all text-muted-foreground h-[200px] flex items-center justify-center cursor-pointer"
+    >
+      <input {...getInputProps()} />
+      {isDragActive ? (
+        <p>Drop the files here ...</p>
+      ) : (
+        <p>
+          Drag & drop some files here <br /> or click to select files
+        </p>
+      )}
+    </div>
   );
 };
