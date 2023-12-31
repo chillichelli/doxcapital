@@ -42,30 +42,28 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <head />
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
+            "h-screen bg-background font-sans antialiased",
             fontSans.variable,
             fontMono.variable,
           )}
         >
-          <WagmiProvider>
-            <ThemeProvider attribute="class" defaultTheme="light">
-              <TooltipProvider>
-                <SelectedWalletsProvider>
-                  <CsvProvider>
-                    <WalletsListProvider>
-                      <LabelStoreProvider>
-                        <div className="relative flex min-h-screen flex-col">
-                          <div className="flex-1">{children}</div>
-                        </div>
-                      </LabelStoreProvider>
-                    </WalletsListProvider>
-                  </CsvProvider>
-                </SelectedWalletsProvider>
-              </TooltipProvider>
-            </ThemeProvider>
-          </WagmiProvider>
-          <SpeedInsights />
-          <Analytics />
+          <div className="flex flex-col h-full">
+            <WagmiProvider>
+              <ThemeProvider attribute="class" defaultTheme="light">
+                <TooltipProvider>
+                  <SelectedWalletsProvider>
+                    <CsvProvider>
+                      <WalletsListProvider>
+                        <LabelStoreProvider>{children}</LabelStoreProvider>
+                      </WalletsListProvider>
+                    </CsvProvider>
+                  </SelectedWalletsProvider>
+                </TooltipProvider>
+              </ThemeProvider>
+            </WagmiProvider>
+            <SpeedInsights />
+            <Analytics />
+          </div>
         </body>
       </html>
     </>

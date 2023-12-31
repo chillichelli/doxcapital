@@ -20,18 +20,18 @@ interface Dashboard {
 export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
   return (
     <>
-      <div className="flex lg:hidden flex-col border h-full items-stretch w-full shadow-md bg-card">
-        <div className="flex flex-col gap-3 px-3 py-5">
+      <div className="flex lg:hidden flex-col h-full items-stretch w-full bg-card">
+        <div className="flex flex-col gap-3 p-5">
           <CardTitle>Upload CSV</CardTitle>
         </div>
         <Separator />
-        <div className="flex flex-col gap-3 px-3 py-5">
+        <div className="flex flex-col gap-3 p-5 pb-0">
           <CardDescription>
             Download multiple CSV files containing holder data from the
             Etherscan token page and upload them here.
           </CardDescription>
         </div>
-        <div className="flex flex-col gap-3 px-3 pb-4">
+        <div className="flex flex-col gap-3 p-5">
           <DropZone />
         </div>
         <Separator />
@@ -41,7 +41,7 @@ export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
         <Separator />
         <CompareWallets />
       </div>
-      <div className="hidden lg:block border bg-card shadow-md rounded-lg">
+      <div className="hidden h-full lg:block bg-card">
         <ResizablePanelGroup
           direction="horizontal"
           onLayout={(sizes: number[]) => {
@@ -56,17 +56,17 @@ export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
             minSize={15}
             maxSize={40}
           >
-            <div className="flex flex-col gap-3 px-3 py-5">
+            <div className="flex flex-col gap-3 p-5">
               <CardTitle>Upload CSV</CardTitle>
             </div>
             <Separator />
-            <div className="flex flex-col gap-3 px-3 py-5">
+            <div className="flex flex-col gap-3 p-5 pb-0">
               <CardDescription>
                 Download multiple CSV files containing holder data from the
                 Etherscan token page and upload them here.
               </CardDescription>
             </div>
-            <div className="flex flex-col gap-3 px-3 pb-4">
+            <div className="flex flex-col gap-3 p-5">
               <DropZone />
             </div>
             <Separator />

@@ -39,8 +39,8 @@ export const UploadedFiles = () => {
 
   return (
     <div className="">
-      <div className="flex flex-col gap-3 px-3 py-5">
-        <CardTitle>{keys.length} file(s) uploaded</CardTitle>
+      <div className="flex flex-col gap-3 p-5">
+        <CardTitle>Uploaded files</CardTitle>
       </div>
       <Separator />
       <ScrollArea className="h-fit">
@@ -93,7 +93,7 @@ export const Item: FC<Item> = ({ data, item, remove }) => {
     <div
       key={item}
       className={cn(
-        "pr-[54px] relative gap-2 rounded-lg border pl-3 py-2 text-sm transition-all hover:bg-accent",
+        "pr-[54px] relative gap-2 rounded-lg border pl-3 py-2 text-sm transition-all hover:bg-accent shadow-sm",
       )}
     >
       <div className="flex items-center gap-2">

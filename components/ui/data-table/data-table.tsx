@@ -78,13 +78,13 @@ export function DataTable<TData, TValue>({
     <div className="w-full">
       {toolbar ? (
         <>
-          <div className="p-3">
+          <div className="px-5 py-3">
             <DataTableToolbar table={table} />
           </div>
           <Separator />
         </>
       ) : null}
-      <div className="p-3">
+      <div className="px-5 py-3">
         <div className="rounded-md border">
           <Table>
             <TableHeader>
@@ -126,9 +126,9 @@ export function DataTable<TData, TValue>({
                 <TableRow>
                   <TableCell
                     colSpan={columns.length}
-                    className="h-24 text-center"
+                    className="h-[190px] text-center text-muted-foreground text-xs"
                   >
-                    No results.
+                    No data.
                   </TableCell>
                 </TableRow>
               )}
@@ -136,11 +136,7 @@ export function DataTable<TData, TValue>({
           </Table>
         </div>
       </div>
-      {pagination ? (
-        <div className="px-2 pb-3">
-          <DataTablePagination table={table} />
-        </div>
-      ) : null}
+      {pagination ? <DataTablePagination table={table} /> : null}
     </div>
   );
 }
