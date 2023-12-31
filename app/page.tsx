@@ -26,7 +26,7 @@ export default function IndexPage() {
               href="https://twitter.com/chillichelli"
               className="tracking-tight text-blue-500 font-bold text-lg relative -top-0.5"
             >
-              by chillichelli
+              @chillichelli
             </a>
           </p>
           <span className="-mt-1 text-muted-foreground font-medium pl-1">
