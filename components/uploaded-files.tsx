@@ -11,7 +11,13 @@ import { Button } from "@/components/ui/button";
 import { CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { link } from "@/node_modules/.pnpm/unenv@1.8.0/node_modules/unenv/runtime/node/fs";
 import { getAddress } from "viem";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
@@ -89,6 +95,8 @@ export const Item: FC<Item> = ({ data, item, remove }) => {
     setEditMode(false);
   }, [item]);
 
+  const val = tokenData ? tokenData.symbol : store[item] ? store[item] : item;
+
   return (
     <div
       key={item}
@@ -125,8 +133,16 @@ export const Item: FC<Item> = ({ data, item, remove }) => {
                 />
               </div>
             ) : null}
+
             <div className="truncate">
-              {tokenData ? tokenData.symbol : store[item] ? store[item] : item}
+              {tokenData || store[item] ? (
+                <Tooltip>
+                  <TooltipTrigger>{val}</TooltipTrigger>
+                  <TooltipContent collisionPadding={16}>{item}</TooltipContent>
+                </Tooltip>
+              ) : (
+                val
+              )}
             </div>
           </>
         )}

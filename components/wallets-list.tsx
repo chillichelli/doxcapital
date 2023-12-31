@@ -5,6 +5,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { DataTable } from "@/components/ui/data-table/data-table";
 import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-column-header";
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
   useWalletsState,
   WalletsListStateRecord,
 } from "@/components/wallets-list-provider";
@@ -37,7 +42,7 @@ const TokenCell: FC<{ row: Row<WalletsListStateRecord> }> = ({ row }) => {
 const AddressCell: FC<{ row: Row<WalletsListStateRecord> }> = ({ row }) => {
   const { data } = useEnsName({ chainId: 1, address: row.getValue("address") });
 
-  return (
+  const link = (
     <a
       target="_blank"
       rel="noopener noreferrer"
@@ -47,6 +52,19 @@ const AddressCell: FC<{ row: Row<WalletsListStateRecord> }> = ({ row }) => {
       {data ? data : row.getValue("address")}
     </a>
   );
+
+  if (data) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>{link}</TooltipTrigger>
+        <TooltipContent collisionPadding={8}>
+          {row.getValue("address")}
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
+
+  return link;
 };
 
 export const columns: ColumnDef<WalletsListStateRecord>[] = [
