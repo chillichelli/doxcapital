@@ -88,6 +88,7 @@ export const WalletsList = () => {
       data={data}
       columns={columns}
       initialState={{ sorting: [{ desc: true, id: "count" }] }}
+      placeholder="No files uploaded"
     />
   );
 };

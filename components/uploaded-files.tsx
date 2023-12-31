@@ -93,7 +93,7 @@ export const Item: FC<Item> = ({ data, item, remove }) => {
     <div
       key={item}
       className={cn(
-        "pr-[54px] relative gap-2 rounded-lg border pl-3 py-2 text-sm transition-all hover:bg-accent shadow-sm",
+        "pr-[54px] relative gap-2 rounded-lg border pl-3 py-2 text-sm transition-all bg-white hover:shadow-md hover:translate-y-[-1px]",
       )}
     >
       <div className="flex items-center gap-2">

@@ -37,6 +37,7 @@ interface DataTableProps<TData, TValue> {
   initialState?: InitialTableState;
   pagination?: boolean;
   toolbar?: boolean;
+  placeholder?: string;
 }
 
 export function DataTable<TData, TValue>({
@@ -45,6 +46,7 @@ export function DataTable<TData, TValue>({
   initialState,
   pagination = true,
   toolbar = true,
+  placeholder,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
@@ -75,16 +77,15 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="w-full">
+    <div className="w-full space-y-3 py-3">
       {toolbar ? (
         <>
-          <div className="px-5 py-3">
+          <div className="px-5">
             <DataTableToolbar table={table} />
           </div>
-          <Separator />
         </>
       ) : null}
-      <div className="px-5 py-3">
+      <div className="px-5">
         <div className="rounded-md border">
           <Table>
             <TableHeader>
@@ -128,7 +129,7 @@ export function DataTable<TData, TValue>({
                     colSpan={columns.length}
                     className="h-[190px] text-center text-muted-foreground text-xs"
                   >
-                    No data.
+                    {placeholder}
                   </TableCell>
                 </TableRow>
               )}

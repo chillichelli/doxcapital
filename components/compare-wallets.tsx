@@ -131,6 +131,7 @@ export const CompareWallets = () => {
       initialState={{ sorting: [{ desc: true, id: "count" }] }}
       pagination={false}
       toolbar={false}
+      placeholder="Select wallets to compare"
     />
   );
 };

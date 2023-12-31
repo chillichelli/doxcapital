@@ -11,23 +11,6 @@ export default function IndexPage() {
 
   return (
     <>
-      <p
-        className={cn(
-          fontSans.className,
-          "flex gap-3 items-baseline text-xl tracking-tighter font-bold p-5",
-        )}
-      >
-        dox.capital{" "}
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://twitter.com/chillichelli"
-          className="tracking-tight text-blue-500 font-semibold text-sm relative"
-        >
-          chillichelli
-        </a>
-      </p>
-      <Separator />
       <Dashboard defaultLayout={defaultLayout} />
     </>
   );

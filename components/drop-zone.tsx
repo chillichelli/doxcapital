@@ -5,6 +5,7 @@ import {
   CsvState,
   useCsvStateActions,
 } from "@/components/csv-data-provider";
+import { cn } from "@/lib/utils";
 import React, { useCallback } from "react";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
 import Papa from "papaparse";
@@ -53,13 +54,16 @@ export const DropZone = () => {
   return (
     <div
       {...getRootProps()}
-      className="border border-dotted rounded-md text-sm text-center bg-accent hover:bg-secondary transition-all text-muted-foreground h-[200px] flex items-center justify-center cursor-pointer"
+      className={cn(
+        isDragActive ? "border-blue-500" : "",
+        "border-2 border-dotted rounded-xl text-sm text-center bg-white transition-all text-muted-foreground h-[200px] flex items-center justify-center cursor-pointer",
+      )}
     >
       <input {...getInputProps()} />
       {isDragActive ? (
-        <p>Drop the files here ...</p>
+        <p className="text-xs">Drop the files here ...</p>
       ) : (
-        <p>
+        <p className="text-xs">
           Drag & drop some files here <br /> or click to select files
         </p>
       )}

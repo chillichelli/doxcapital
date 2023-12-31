@@ -11,6 +11,8 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { UploadedFiles } from "@/components/uploaded-files";
 import { WalletsList } from "@/components/wallets-list";
+import { fontSans } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 import { FC } from "react";
 
 interface Dashboard {
@@ -21,6 +23,23 @@ export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
   return (
     <>
       <div className="flex lg:hidden flex-col h-full items-stretch w-full bg-card">
+        <p
+          className={cn(
+            fontSans.className,
+            "flex gap-3 items-baseline text-xl tracking-tighter font-bold p-5",
+          )}
+        >
+          dox.capital{" "}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://twitter.com/chillichelli"
+            className="tracking-tight text-blue-500 font-semibold text-sm relative"
+          >
+            chillichelli
+          </a>
+        </p>
+        <Separator />
         <div className="flex flex-col gap-3 p-5">
           <CardTitle>Upload CSV</CardTitle>
         </div>
@@ -55,7 +74,25 @@ export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
             defaultSize={defaultLayout[0]}
             minSize={15}
             maxSize={40}
+            className="bg-muted/80"
           >
+            <p
+              className={cn(
+                fontSans.className,
+                "flex gap-3 items-baseline text-xl tracking-tighter font-bold p-5",
+              )}
+            >
+              dox.capital{" "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://twitter.com/chillichelli"
+                className="tracking-tight text-blue-500 font-semibold text-sm relative"
+              >
+                chillichelli
+              </a>
+            </p>
+            <Separator />
             <div className="flex flex-col gap-3 p-5">
               <CardTitle>Upload CSV</CardTitle>
             </div>
@@ -75,7 +112,6 @@ export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
           <ResizableHandle withHandle />
           <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
             <WalletsList />
-            <Separator />
             <CompareWallets />
           </ResizablePanel>
         </ResizablePanelGroup>
