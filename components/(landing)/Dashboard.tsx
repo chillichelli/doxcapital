@@ -20,7 +20,7 @@ interface Dashboard {
 export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
   return (
     <>
-      <div className="flex lg:hidden flex-col border h-full items-stretch w-full shadow bg-card">
+      <div className="flex lg:hidden flex-col border h-full items-stretch w-full shadow-md bg-card">
         <div className="flex flex-col gap-3 px-3 py-5">
           <CardTitle>Upload CSV</CardTitle>
         </div>
@@ -41,7 +41,7 @@ export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
         <Separator />
         <CompareWallets />
       </div>
-      <div className="hidden lg:block">
+      <div className="hidden lg:block border bg-card shadow-md rounded-lg">
         <ResizablePanelGroup
           direction="horizontal"
           onLayout={(sizes: number[]) => {
@@ -49,7 +49,7 @@ export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
               sizes,
             )}`;
           }}
-          className="border rounded-lg h-full items-stretch w-full"
+          className="h-full items-stretch w-full"
         >
           <ResizablePanel
             defaultSize={defaultLayout[0]}
