@@ -1,8 +1,9 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Wallet Finder",
-  description: "Cross check wallets over token holder data.",
+  name: "dox capital - kek",
+  description:
+    "Dox influencer wallets by uploading token holder data on all their shills.",
   mainNav: [],
   links: {
     twitter: "https://twitter.com/shadcn",
