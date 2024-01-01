@@ -56,7 +56,7 @@ export const DropZone = () => {
       {...getRootProps()}
       className={cn(
         isDragActive ? "border-blue-500" : "",
-        "border-2 border-dotted rounded-xl text-sm text-center bg-white transition-all text-muted-foreground h-[200px] flex items-center justify-center cursor-pointer",
+        "border-2 border-dotted rounded-xl text-sm text-center bg-accent dark:bg-accent/20 hover:dark:bg-accent/40 transition-all text-muted-foreground h-[200px] flex items-center justify-center cursor-pointer",
       )}
     >
       <input {...getInputProps()} />

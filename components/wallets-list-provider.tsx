@@ -4,8 +4,7 @@ import { useCsvState } from "@/components/csv-data-provider";
 import { createContext, FC, ReactNode, useContext, useMemo } from "react";
 
 export interface WalletsListStateRecord {
-  address: string;
-  count: number;
+  [x: string]: string;
 }
 
 const WalletListStateContext = createContext<
@@ -19,20 +18,28 @@ interface WalletsListProvider {
 export const WalletsListProvider: FC<WalletsListProvider> = ({ children }) => {
   const { data: csvData } = useCsvState();
   const data: WalletsListStateRecord[] = useMemo(() => {
-    const data: Record<string, number> = {};
+    const data: Record<string, Record<string, string>> = {};
 
-    Object.entries(csvData).forEach(([, records]) => {
+    Object.entries(csvData).forEach(([token, records]) => {
       Object.entries(records).forEach(([, record]) => {
         if (data[record.HolderAddress] && record.HolderAddress !== "") {
-          data[record.HolderAddress] += 1;
+          data[record.HolderAddress] = {
+            ...data[record.HolderAddress],
+            address: record.HolderAddress,
+            count: `${+data[record.HolderAddress].count + 1}`,
+            [token]: record.Balance,
+          };
         } else {
-          data[record.HolderAddress] = 1;
+          data[record.HolderAddress] = {
+            address: record.HolderAddress,
+            count: "1",
+            [token]: record.Balance,
+          };
         }
       });
     });
 
-    console.log(data);
-    return Object.keys(data).map((key) => ({ address: key, count: data[key] }));
+    return Object.values(data);
   }, [csvData]);
 
   return (

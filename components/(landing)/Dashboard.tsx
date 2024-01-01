@@ -3,11 +3,13 @@
 import { CompareWallets } from "@/components/compare-wallets";
 import { DropZone } from "@/components/drop-zone";
 import { CardDescription, CardTitle } from "@/components/ui/card";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { UploadedFiles } from "@/components/uploaded-files";
 import { WalletsList } from "@/components/wallets-list";
@@ -74,24 +76,27 @@ export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
             defaultSize={defaultLayout[0]}
             minSize={15}
             maxSize={40}
-            className="bg-muted/80"
+            className="bg-muted/20"
           >
-            <p
-              className={cn(
-                fontSans.className,
-                "flex gap-3 items-baseline text-xl tracking-tighter font-bold p-5",
-              )}
-            >
-              dox.capital{" "}
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://twitter.com/chillichelli"
-                className="tracking-tight text-blue-500 font-semibold text-sm relative"
+            <div className="flex items-center justify-between p-5">
+              <p
+                className={cn(
+                  fontSans.className,
+                  "flex gap-3 items-baseline text-xl tracking-tighter font-bold",
+                )}
               >
-                chillichelli
-              </a>
-            </p>
+                dox.capital{" "}
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://twitter.com/chillichelli"
+                  className="tracking-tight text-blue-500 font-semibold text-sm relative"
+                >
+                  chillichelli
+                </a>
+              </p>
+              <ModeToggle />
+            </div>
             <Separator />
             <div className="flex flex-col gap-3 p-5">
               <CardTitle>Upload CSV</CardTitle>
@@ -110,9 +115,12 @@ export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
             <UploadedFiles />
           </ResizablePanel>
           <ResizableHandle withHandle />
-          <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
+          <ResizablePanel
+            defaultSize={defaultLayout[1]}
+            minSize={30}
+            className="!overflow-auto"
+          >
             <WalletsList />
-            <CompareWallets />
           </ResizablePanel>
         </ResizablePanelGroup>
       </div>

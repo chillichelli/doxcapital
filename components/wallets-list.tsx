@@ -1,9 +1,14 @@
 "use client";
 
-import { useSelectedWalletsActions } from "@/components/selected-wallets-provider";
-import { Checkbox } from "@/components/ui/checkbox";
+import { useCsvState } from "@/components/csv-data-provider";
+import { useLabelStore } from "@/components/label-store-provider";
 import { DataTable } from "@/components/ui/data-table/data-table";
 import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-column-header";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import {
   Tooltip,
   TooltipContent,
@@ -13,31 +18,11 @@ import {
   useWalletsState,
   WalletsListStateRecord,
 } from "@/components/wallets-list-provider";
-import { CheckedState } from "@radix-ui/react-checkbox";
-import { ColumnDef, Row } from "@tanstack/react-table";
-import { FC, useCallback } from "react";
-import { useEnsName } from "wagmi";
-
-const TokenCell: FC<{ row: Row<WalletsListStateRecord> }> = ({ row }) => {
-  const { toggle } = useSelectedWalletsActions();
-
-  const onCheckedChange = useCallback(
-    (value: CheckedState) => {
-      row.toggleSelected(!!value);
-      toggle([row.getValue("address")]);
-    },
-    [row, toggle],
-  );
-
-  return (
-    <Checkbox
-      checked={row.getIsSelected()}
-      onCheckedChange={onCheckedChange}
-      aria-label="Select row"
-      className="translate-y-[2px]"
-    />
-  );
-};
+import { shortenAddress } from "@/lib/utils";
+import { Column, ColumnDef, Row } from "@tanstack/react-table";
+import { FC, useMemo } from "react";
+import { getAddress } from "viem";
+import { useEnsName, useToken } from "wagmi";
 
 const AddressCell: FC<{ row: Row<WalletsListStateRecord> }> = ({ row }) => {
   const { data } = useEnsName({ chainId: 1, address: row.getValue("address") });
@@ -67,45 +52,140 @@ const AddressCell: FC<{ row: Row<WalletsListStateRecord> }> = ({ row }) => {
   return link;
 };
 
-export const columns: ColumnDef<WalletsListStateRecord>[] = [
-  {
-    id: "select",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Compare" />
-    ),
-    cell: ({ row }) => <TokenCell row={row} />,
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    id: "count",
-    accessorKey: "count",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Has token(s)" />
-    ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("count")}</div>,
-    enableSorting: true,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "address",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Address" />
-    ),
-    cell: ({ row }) => <AddressCell row={row} />,
-    enableSorting: false,
-    enableHiding: false,
-  },
-];
+const TokenHeader: FC<{
+  column: Column<WalletsListStateRecord, unknown>;
+  id: string;
+}> = ({ column, id }) => {
+  const { store } = useLabelStore();
+  const { data: tokenData } = useToken({
+    address: getAddress(id as `0x${string}`),
+  });
+
+  return (
+    <DataTableColumnHeader
+      column={column}
+      title={`${
+        tokenData
+          ? tokenData.symbol
+          : store[id]
+            ? store[id]
+            : shortenAddress(id)
+      }`}
+      align="right"
+    />
+  );
+};
+
+const TokenCell: FC<{ row: Row<WalletsListStateRecord>; id: string }> = ({
+  row,
+  id,
+}) => {
+  const val =
+    row.getValue(id) !== undefined
+      ? parseFloat(
+          (row.getValue(id) as string).replace(",", ""),
+        ).toLocaleString("en-US", { minimumFractionDigits: 2 })
+      : "0.00";
+
+  if (!row.getValue(id)) {
+    return "";
+  }
+
+  const data = (
+    <span>
+      {val.split(".")[0]}.
+      <span className="text-[11px] text-muted-foreground">
+        {val.split(".")[1]}
+      </span>{" "}
+    </span>
+  );
+
+  if (val === "0.00") {
+    return (
+      <div className="text-right whitespace-nowrap">
+        <Tooltip>
+          <TooltipTrigger asChild>{data}</TooltipTrigger>
+          <TooltipContent collisionPadding={16}>
+            Address has dust
+          </TooltipContent>
+        </Tooltip>
+      </div>
+    );
+  }
+
+  return (
+    <div className="text-right whitespace-nowrap">
+      <span className="hover:underline underline-offset-2">
+        {val.split(".")[0]}.
+        <span className="text-[11px] text-muted-foreground">
+          {val.split(".")[1]}
+        </span>{" "}
+      </span>
+    </div>
+  );
+};
 
 export const WalletsList = () => {
-  const data = useWalletsState();
+  const { data: csvState } = useCsvState();
+  const walletsState = useWalletsState();
+
+  const columns: ColumnDef<WalletsListStateRecord>[] = useMemo(
+    () => [
+      {
+        accessorKey: "address",
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Address" />
+        ),
+        cell: ({ row }) => <AddressCell row={row} />,
+        enableSorting: false,
+        enableHiding: false,
+      },
+      {
+        id: "count",
+        accessorKey: "count",
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Has token(s)" />
+        ),
+        cell: ({ row }) => (
+          <div className="w-[80px]">{row.getValue("count")}</div>
+        ),
+        enableSorting: true,
+        enableHiding: false,
+      },
+      ...(Object.keys(csvState).map((key) => ({
+        id: key,
+        accessorKey: key,
+        header: ({ column }) => <TokenHeader column={column} id={key} />,
+        sortingFn: (rowA, rowB) => {
+          const valA =
+            rowA.getValue(key) !== undefined
+              ? parseFloat((rowA.getValue(key) as string).replace(",", ""))
+              : 0;
+
+          const valB =
+            rowB.getValue(key) !== undefined
+              ? parseFloat((rowB.getValue(key) as string).replace(",", ""))
+              : 0;
+
+          return Number(valB) - Number(valA);
+        },
+        cell: ({ row }) => <TokenCell row={row} id={key} />,
+        enableSorting: true,
+        enableHiding: false,
+        invertSorting: true,
+      })) as ColumnDef<WalletsListStateRecord>[]),
+    ],
+    [csvState],
+  );
 
   return (
     <DataTable
-      data={data}
+      data={walletsState}
       columns={columns}
-      initialState={{ sorting: [{ desc: true, id: "count" }] }}
+      initialState={{
+        sorting: [{ desc: true, id: "count" }],
+        pagination: { pageSize: 20 },
+      }}
       placeholder="No files uploaded"
     />
   );

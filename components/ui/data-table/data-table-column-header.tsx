@@ -39,7 +39,7 @@ export function DataTableColumnHeader<TData, TValue>({
     <div
       className={cn(
         align === "right" ? "justify-end" : "",
-        "flex items-center space-x-2",
+        "flex items-center space-x-2 whitespace-nowrap",
         className,
       )}
     >
