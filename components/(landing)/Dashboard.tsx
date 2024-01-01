@@ -9,7 +9,6 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { UploadedFiles } from "@/components/uploaded-files";
 import { WalletsList } from "@/components/wallets-list";

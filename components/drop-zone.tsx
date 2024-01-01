@@ -52,21 +52,23 @@ export const DropZone = () => {
   });
 
   return (
-    <div
-      {...getRootProps()}
-      className={cn(
-        isDragActive ? "border-blue-500" : "",
-        "border-2 border-dotted rounded-xl text-sm text-center bg-accent dark:bg-accent/20 hover:dark:bg-accent/40 transition-all text-muted-foreground h-[200px] flex items-center justify-center cursor-pointer",
-      )}
-    >
-      <input {...getInputProps()} />
-      {isDragActive ? (
-        <p className="text-xs">Drop the files here ...</p>
-      ) : (
-        <p className="text-xs">
-          Drag & drop some files here <br /> or click to select files
-        </p>
-      )}
+    <div className="flex flex-col gap-2">
+      <div
+        {...getRootProps()}
+        className={cn(
+          isDragActive ? "border-blue-500" : "",
+          "border-2 border-dotted rounded-xl text-sm text-center bg-accent dark:bg-accent/20 hover:dark:bg-accent/40 transition-all text-muted-foreground h-[200px] flex items-center justify-center cursor-pointer",
+        )}
+      >
+        <input {...getInputProps()} />
+        {isDragActive ? (
+          <p className="text-xs">Drop the files here ...</p>
+        ) : (
+          <p className="text-xs">
+            Drag & drop some files here <br /> or click to select files
+          </p>
+        )}
+      </div>
     </div>
   );
 };

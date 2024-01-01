@@ -179,6 +179,16 @@ export const WalletsList = () => {
     [csvState],
   );
 
+  if (walletsState.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-full w-full">
+        <span className="text-sm font-medium">
+          Upload some files to start cooking 🧑‍🍳.
+        </span>
+      </div>
+    );
+  }
+
   return (
     <DataTable
       data={walletsState}
