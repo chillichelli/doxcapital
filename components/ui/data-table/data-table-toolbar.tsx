@@ -1,5 +1,6 @@
 "use client";
 
+import { DataTableViewOptions } from "@/components/ui/data-table/data-table-view-options";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
 
@@ -37,6 +38,7 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
+      <DataTableViewOptions table={table} />
     </div>
   );
 }

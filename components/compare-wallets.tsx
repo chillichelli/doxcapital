@@ -46,9 +46,7 @@ const TokenCell: FC<{ row: Row<Record>; id: string }> = ({ row, id }) => {
   return (
     <div className="text-right font-medium">
       {row.getValue(id)
-        ? parseFloat(
-            (row.getValue(id) as string).replaceAll(",", ""),
-          ).toLocaleString("en-US")
+        ? parseFloat(row.getValue(id)).toLocaleString("en-US")
         : ""}{" "}
       <span className="font-normal text-muted-foreground">
         {tokenData ? tokenData.symbol : store[id] ? store[id] : ""}
@@ -93,8 +91,7 @@ export const CompareWallets = () => {
         header: ({ column }) => <TokenHeader column={column} id={key} />,
         sortingFn: (rowA, rowB) => {
           return (
-            parseFloat((rowA.getValue(key) as string).replaceAll(",", "")) -
-            parseFloat((rowB.getValue(key) as string).replaceAll(",", ""))
+            parseFloat(rowA.getValue(key)) - parseFloat(rowB.getValue(key))
           );
         },
         cell: ({ row }) => <TokenCell row={row} id={key} />,

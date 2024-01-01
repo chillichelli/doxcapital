@@ -29,9 +29,19 @@ export const DropZone = () => {
 
           if (file.name.replace(/[^-]/g, "").length === 4) {
             const split = file.name.split("-");
-            state[split[4].replace(".csv", "")] = data.data;
+            state[split[4].replace(".csv", "")] = data.data
+              .filter((el) => el.Balance)
+              .map((el) => ({
+                ...el,
+                Balance: el.Balance.replaceAll(",", ""),
+              }));
           } else {
-            state[file.name.replace(".csv", "")] = data.data;
+            state[file.name.replace(".csv", "")] = data.data
+              .filter((el) => el.Balance)
+              .map((el) => ({
+                ...el,
+                Balance: el.Balance.replaceAll(",", ""),
+              }));
           }
         };
         reader.onloadend = () => {

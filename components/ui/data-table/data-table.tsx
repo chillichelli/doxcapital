@@ -20,6 +20,7 @@ import {
   InitialTableState,
   Updater,
   TableState,
+  RowData,
 } from "@tanstack/react-table";
 
 import {
@@ -38,6 +39,14 @@ interface DataTableProps<TData, TValue> {
   pagination?: boolean;
   toolbar?: boolean;
   placeholder?: string;
+}
+
+declare module "@tanstack/react-table" {
+  interface ColumnMeta<TData extends RowData, TValue> {
+    header?: {
+      label?: string;
+    };
+  }
 }
 
 export function DataTable<TData, TValue>({

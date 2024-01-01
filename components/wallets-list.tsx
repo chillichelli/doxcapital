@@ -4,11 +4,7 @@ import { useCsvState } from "@/components/csv-data-provider";
 import { useLabelStore } from "@/components/label-store-provider";
 import { DataTable } from "@/components/ui/data-table/data-table";
 import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-column-header";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+
 import {
   Tooltip,
   TooltipContent,
@@ -18,7 +14,6 @@ import {
   useWalletsState,
   WalletsListStateRecord,
 } from "@/components/wallets-list-provider";
-import { useTotalSupply } from "@/hooks/useTotalSupply";
 import { shortenAddress } from "@/lib/utils";
 import { Column, ColumnDef, Row } from "@tanstack/react-table";
 import { FC, useMemo } from "react";
@@ -83,9 +78,9 @@ const TokenCell: FC<{ row: Row<WalletsListStateRecord>; id: string }> = ({
 }) => {
   const val =
     row.getValue(id) !== undefined
-      ? parseFloat(
-          (row.getValue(id) as string).replaceAll(",", ""),
-        ).toLocaleString("en-US", { minimumFractionDigits: 2 })
+      ? parseFloat(row.getValue(id)).toLocaleString("en-US", {
+          minimumFractionDigits: 2,
+        })
       : "0.00";
 
   if (!row.getValue(id)) {
@@ -144,6 +139,7 @@ export const WalletsList = () => {
       {
         id: "count",
         accessorKey: "count",
+        accessorFn: (row) => +row.count,
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Has token(s)" />
         ),
@@ -152,27 +148,33 @@ export const WalletsList = () => {
         ),
         enableSorting: true,
         enableHiding: false,
+        meta: {
+          header: {
+            label: "Has token(s)",
+          },
+        },
       },
       ...(Object.keys(csvState).map((key) => ({
         id: key,
         accessorKey: key,
+        accessorFn: (row) => +row[key],
         header: ({ column }) => <TokenHeader column={column} id={key} />,
         sortingFn: (rowA, rowB) => {
           const valA =
             rowA.getValue(key) !== undefined
-              ? parseFloat((rowA.getValue(key) as string).replaceAll(",", ""))
+              ? parseFloat(rowA.getValue(key))
               : 0;
 
           const valB =
             rowB.getValue(key) !== undefined
-              ? parseFloat((rowB.getValue(key) as string).replaceAll(",", ""))
+              ? parseFloat(rowB.getValue(key))
               : 0;
 
           return Number(valB) - Number(valA);
         },
         cell: ({ row }) => <TokenCell row={row} id={key} />,
         enableSorting: true,
-        enableHiding: false,
+        enableHiding: true,
         invertSorting: true,
       })) as ColumnDef<WalletsListStateRecord>[]),
     ],
