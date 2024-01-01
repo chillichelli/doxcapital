@@ -58,8 +58,6 @@ export const Dashboard: FC<Dashboard> = ({ defaultLayout = [125, 500] }) => {
         <UploadedFiles />
         <Separator />
         <WalletsList />
-        <Separator />
-        <CompareWallets />
       </div>
       <div className="hidden h-full lg:block bg-card">
         <ResizablePanelGroup
