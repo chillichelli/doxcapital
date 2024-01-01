@@ -157,7 +157,8 @@ export const WalletsList = () => {
       ...(Object.keys(csvState).map((key) => ({
         id: key,
         accessorKey: key,
-        accessorFn: (row) => +row[key],
+        accessorFn: (row) =>
+          row[key] !== undefined ? parseFloat(row[key]) : 0,
         header: ({ column }) => <TokenHeader column={column} id={key} />,
         sortingFn: (rowA, rowB) => {
           const valA =
