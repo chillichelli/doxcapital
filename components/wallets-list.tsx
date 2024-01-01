@@ -18,6 +18,7 @@ import {
   useWalletsState,
   WalletsListStateRecord,
 } from "@/components/wallets-list-provider";
+import { useTotalSupply } from "@/hooks/useTotalSupply";
 import { shortenAddress } from "@/lib/utils";
 import { Column, ColumnDef, Row } from "@tanstack/react-table";
 import { FC, useMemo } from "react";
@@ -83,7 +84,7 @@ const TokenCell: FC<{ row: Row<WalletsListStateRecord>; id: string }> = ({
   const val =
     row.getValue(id) !== undefined
       ? parseFloat(
-          (row.getValue(id) as string).replace(",", ""),
+          (row.getValue(id) as string).replaceAll(",", ""),
         ).toLocaleString("en-US", { minimumFractionDigits: 2 })
       : "0.00";
 
@@ -115,7 +116,7 @@ const TokenCell: FC<{ row: Row<WalletsListStateRecord>; id: string }> = ({
 
   return (
     <div className="text-right whitespace-nowrap">
-      <span className="hover:underline underline-offset-2">
+      <span>
         {val.split(".")[0]}.
         <span className="text-[11px] text-muted-foreground">
           {val.split(".")[1]}
@@ -159,12 +160,12 @@ export const WalletsList = () => {
         sortingFn: (rowA, rowB) => {
           const valA =
             rowA.getValue(key) !== undefined
-              ? parseFloat((rowA.getValue(key) as string).replace(",", ""))
+              ? parseFloat((rowA.getValue(key) as string).replaceAll(",", ""))
               : 0;
 
           const valB =
             rowB.getValue(key) !== undefined
-              ? parseFloat((rowB.getValue(key) as string).replace(",", ""))
+              ? parseFloat((rowB.getValue(key) as string).replaceAll(",", ""))
               : 0;
 
           return Number(valB) - Number(valA);
