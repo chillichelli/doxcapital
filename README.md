@@ -1,22 +1,13 @@
-# next-template
+# dox.capital
 
-A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
+## Overview
 
-## Usage
+`dox.capital` is a project that provides a tool for discovering wallets by cross-checking holder data.
 
-```bash
-npx create-next-app -e https://github.com/shadcn/next-template
-```
+## How it Works
 
-## Features
+1. **Upload Etherscan holder data**: Users can inpload multiple csv files that can be downloaded from the holder data section on a Etherscan token page.
 
-- Next.js 13 App Directory
-- Radix UI Primitives
-- Tailwind CSS
-- Icons from [Lucide](https://lucide.dev)
-- Dark mode with `next-themes`
-- Tailwind CSS class sorting, merging and linting.
+2. **Cross-Check Process**: The tool performs a cross-check analysis based on the holder data, checking how many times each wallet appears in each CSV.
 
-## License
-
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
+3. **Visualization**: The results are presented in a table, ordered by how often a wallet appears in all CSV files.
