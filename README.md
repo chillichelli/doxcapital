@@ -2,7 +2,7 @@
 
 ## Overview
 
-`dox.capital` is a project that provides a tool for discovering wallets by cross-checking holder data.
+[dox.capital](https://dox.capital) is a project that provides a tool for discovering wallets by cross-checking holder data.
 
 ## How it Works
 
